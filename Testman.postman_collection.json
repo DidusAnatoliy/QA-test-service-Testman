@@ -1,0 +1,247 @@
+{
+  "info": {
+    "_postman_id": "2b11f70c-6c59-45fe-8c27-dc220e9cdecb",
+    "name": "Testman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38400149"
+  },
+  "item": [
+    {
+      "name": "Auth/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"123456\",\r\n  \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.testman.space/auth/login",
+          "protocol": "https",
+          "host": [
+            "api",
+            "testman",
+            "space"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Secret",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1egk}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Секретная ссылка\",\r\n  \"payload\": \"Текст, который должен увидеть получатель\",\r\n  \"comment\": \"Этот комментарий для получателя\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.testman.space/secret",
+          "protocol": "https",
+          "host": [
+            "api",
+            "testman",
+            "space"
+          ],
+          "path": [
+            "secret"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Новый пользователь и токен",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"1234567\",\r\n  \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.testman.space/auth/login",
+          "protocol": "https",
+          "host": [
+            "api",
+            "testman",
+            "space"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Доступ к чужой ссылки",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_0mok}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.testman.space/secret/2293",
+          "protocol": "https",
+          "host": [
+            "api",
+            "testman",
+            "space"
+          ],
+          "path": [
+            "secret",
+            "2293"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Удаление чужой ссылки",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_0mok}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.testman.space/secret/2293",
+          "protocol": "https",
+          "host": [
+            "api",
+            "testman",
+            "space"
+          ],
+          "path": [
+            "secret",
+            "2293"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Проверка API для просроченной ссылки",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.testman.space/secret/public/d6nHfyQ75uTB4RPj",
+          "protocol": "https",
+          "host": [
+            "api",
+            "testman",
+            "space"
+          ],
+          "path": [
+            "secret",
+            "public",
+            "d6nHfyQ75uTB4RPj"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Секретное имя",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_1egk",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0mok",
+      "secret": true
+    }
+  ]
+}
